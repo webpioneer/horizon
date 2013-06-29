@@ -3,8 +3,10 @@
 <html>
 <head>
 
-<meta http-equiv="Content-type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width">
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">
+
 <meta name="keywords" content="{% block meta_keywords %}{% endblock %}">
 <meta name="description" content="{% block meta_description %}{% endblock %}">
 <title>{% block meta_title %}{% endblock %}{% if settings.SITE_TITLE %} | {{ settings.SITE_TITLE }}{% endif %}</title>
@@ -16,17 +18,32 @@
 {% endifinstalled %}
 
 {% compress css %}
-<link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.css">
-<link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.responsive.css">
+<link href="http://www.basicoh.com/demo/flat/agency/css/bootstrap.css" rel="stylesheet" media="screen">
+        <link href="http://www.basicoh.com/demo/flat/agency/css/font-awesome.css" rel="stylesheet">
+        <link href="http://www.basicoh.com/demo/flat/agency/css/bootstrap-responsive.css" rel="stylesheet" media="screen">
+        <link href="http://www.basicoh.com/demo/flat/agency/css/style.css" rel="stylesheet" media="screen">
+        <!--[if IE 7]>
+            <link href="css/font-awesome-ie7.min.css" rel="stylesheet">
+        <![endif]-->
+    
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        
+        
+
+
 <link rel="stylesheet" href="{{ STATIC_URL }}css/mezzanine.css">
 {% ifinstalled cartridge.shop %}
 <link rel="stylesheet" href="{{ STATIC_URL }}css/cartridge.css">
 {% endifinstalled %}
-{% block extra_css %}{% endblock %}
+{% block extra_css %}
+{% endblock %}
 {% endcompress %}
 
 {% compress js %}
-<script src="{{ STATIC_URL }}mezzanine/js/{{ settings.JQUERY_FILENAME }}"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script type="text/javascript" src="js/modernizr.js"></script>
 <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
 <script>
 $(function() {
@@ -43,8 +60,9 @@ $(function() {
 {% block extra_head %}{% endblock %}
 
 </head>
-<body id="{% block body_id %}body{% endblock %}">
 
+<body id="{% block body_id %}body{% endblock %}">
+{% block body %}
 <div class="navbar navbar-inverse">
 <div class="navbar-inner">
 <div class="container">
@@ -133,7 +151,7 @@ $(function() {
 </p>
 </div>
 </footer>
-
+{% endblock %}
 {% include "includes/footer_scripts.html" %}
 
 </body>
