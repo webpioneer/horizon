@@ -307,6 +307,7 @@ INSTALLED_APPS = (
     "mezzanine.twitter",
     "mezzanine.accounts",
     #"mezzanine.mobile",
+    "main",
 )
 
 # List of processors used by RequestContext to populate the context.
@@ -322,6 +323,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.request",
     "django.core.context_processors.tz",
     "mezzanine.conf.context_processors.settings",
+    "main.context_processors.general_data",
 )
 
 # List of middleware classes to use. Order is important; in the request phase,
@@ -392,3 +394,5 @@ except ImportError:
 # applicable.
 from mezzanine.utils.conf import set_dynamic_settings
 set_dynamic_settings(globals())
+
+
