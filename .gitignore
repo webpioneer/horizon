@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 *.pyc
 *.pyo
 *.db
@@ -5,3 +6,9 @@
 .coverage
 local_settings.py
 /static
+=======
+*.log
+*.pot
+*.pyc
+local_settings.py
+>>>>>>> 48e8805af1402345f88465cbb4f0d5d45ee332a6
