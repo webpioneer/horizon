@@ -83,6 +83,13 @@ color: #ecf0f1;
 				</section><!-- /section -->
 
 					<div id="welcome">
+						{% nevercache %}
+						{% for message in messages %}
+						<div class="alert alert-{{ message.tags }}" data-alert="alert">
+						<a class="close" href="#" onclick="$(this).parent().fadeOut('fast'); return false;">×</a>{{ message|safe }}
+						</div>
+						{% endfor %}
+						{% endnevercache %}
 						<div class="container-fluid">
 							<div class="row-fluid">
 								<div class="span12">
