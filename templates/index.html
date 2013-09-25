@@ -376,9 +376,11 @@ color: #ecf0f1;
 													<input class="span12" type="email" name="email" id="email">
 												</div><!-- /controls -->
 												{% if contact_form.email.errors %}
+												<span class="help-block error">
 													{% for error in contact_form.email.errors %}
 														{{ error }}
 													{% endfor %}
+												</span>
 												{% endif %}
 											</div><!-- /control-group -->
 										</div><!-- /span6 -->
@@ -401,9 +403,11 @@ color: #ecf0f1;
 													<textarea class="span12" type="text" name="message" id="message" rows="4"></textarea>
 												</div><!-- /controls -->
 												{% if contact_form.message.errors %}
+												<span class="help-block error">
 													{% for error in contact_form.message.errors %}
 														{{ error }}
 													{% endfor %}
+												</span>
 												{% endif %}
 											</div><!-- /control-group -->
 										</div><!-- /span12 -->
