@@ -44,10 +44,12 @@ color: #ecf0f1;
 				<nav id="nav" class="navigation" role="navigation">
 					<ul class="unstyled">
 						<li class="active" data-section="1"><i class="icon-home"></i> <span>Accueil</span></li>
+						{% comment %}
 						<li data-section="2" class=""><i class="icon-rocket"></i> <span>Services</span></li>
 						<li data-section="3" class=""><i class="icon-laptop"></i> <span>Projets</span></li>
 						<!-- <li data-section="6" class=""><i class="icon-money"></i> <span>Prix</span></li> -->
 						<li data-section="4" class=""><i class="icon-pencil"></i> <span>L'Equipe</span></li>
+						{% endcomment %}
 						<li data-section="5" class="last"><i class="icon-envelope"></i> <span>Contact</span></li>
 					</ul>
 				</nav><!-- /nav -->
@@ -60,7 +62,7 @@ color: #ecf0f1;
 					<div class="container-fluid">
 						<div class="row-fluid">
 							<div id="logo">
-								<img src="http://www.basicoh.com/demo/flat/agency/img/logo.png" alt="">
+								<img src="{{ STATIC_URL }}img/hp.png" alt="">
 							</div>
 						</div>
 					</div>
@@ -72,10 +74,8 @@ color: #ecf0f1;
 								<hgroup>
 									<h1>{% if settings.SITE_TITLE %}{{ settings.SITE_TITLE }}{% endif %}</h1>
 								</hgroup>
-								<button class="btn-inverse" data-section="2">
-									Learn <span>More</span>
-									<i class="icon-circle-arrow-down"></i>
-								</button>
+								<span class="btn btn-info btn-large btn-block" style="font-size:30px">Faire de chaque Recrutement un <span>Succes !</span></span>
+								<span class="btn-warning">Le site est en cours de construction</span>
 							</div><!-- /span6 -->
 							
 						</div><!-- /row-fluid -->
@@ -94,7 +94,7 @@ color: #ecf0f1;
 					</div>
 
 
-
+				{% comment %}
 				<section class="section" id="section2" data-section="2">
 					<div class="container-fluid">
 						<div class="row-fluid title">
@@ -308,7 +308,7 @@ color: #ecf0f1;
 						</div><!-- /row-fluid -->
 					</div><!-- /container -->
 				</section><!-- /section -->
-				
+				{% endcomment %}
 				
 				
 				<section class="section" id="section5" data-section="5">
@@ -323,8 +323,8 @@ color: #ecf0f1;
 						</div><!-- /row-fluid -->
 						<div class="row-fluid content">
 							<div class="span4">
-								<h4 class="intro">Drop me a Line!</h4>
-								<p>Enough about me, let s hear about you. I am currently available for projects starting in July 2013.</p>
+								<h4 class="intro">CONTACTEZ-NOUS</h4>
+								<p>Vous avez une suggestion, ou une simple question ? Contactez-nous, un membre de la team Horizon Plus vous répondra dans les plus brefs délais.</p>
 								<div class="row-fluid alt">
 									<h5>Email:</h5>
 									<span>{{ SITE_EMAIL }}</span>
@@ -333,10 +333,12 @@ color: #ecf0f1;
 									<h5>Phone:</h5>
 									<span>{{ SITE_PHONE }}</span>
 								</div><!-- /row -->
+								{% comment %} 
 								<div class="row-fluid alt">
 									<h5>Twitter:</h5>
 									<span><a href="http://www.twitter.com/basicoh_" rel="external">{{ TWITTER }}</a></span>
 								</div><!-- /row -->
+								{% endcomment %}
 							</div><!-- /span4 -->
 							
 							<div class="span8">
@@ -346,14 +348,14 @@ color: #ecf0f1;
 									</div><!-- /span12 -->
 								</div><!-- /row-fluid -->
 								
-								<form method="POST" action="#">
+								<form method="POST" action="{% url 'contact' %}">{% csrf_token %}
 									
 									<div class="row-fluid">
 										<div class="span6">
 											<div class="control-group">
-												<label for="name" class="control-label">Nom:</label>
+												<label for="nom" class="control-label">Nom:</label>
 												<div class="controls">
-													<input class="span12" type="text" name="contact_name" id="name">
+													<input class="span12" type="text" name="nom" id="nom">
 												</div><!-- /controls -->
 											</div><!-- /control-group -->
 										</div><!-- /span6 -->
@@ -365,15 +367,20 @@ color: #ecf0f1;
 											<div class="control-group">
 												<label for="email" class="control-label">Email:</label>
 												<div class="controls">
-													<input class="span12" type="email" name="contact_email" id="email">
+													<input class="span12" type="email" name="email" id="email">
 												</div><!-- /controls -->
+												{% if contact_form.email.errors %}
+													{% for error in contact_form.email.errors %}
+														{{ error }}
+													{% endfor %}
+												{% endif %}
 											</div><!-- /control-group -->
 										</div><!-- /span6 -->
 										<div class="span6">
 											<div class="control-group">
-												<label for="phone" class="control-label">Telephone :</label>
+												<label for="tel" class="control-label">Telephone :</label>
 												<div class="controls">
-													<input class="span12" type="tel" name="contact_phone" id="phone">  
+													<input class="span12" type="tel" name="tel" id="tel">  
 												</div><!-- /controls -->
 											</div><!-- /control-group -->
 										</div><!-- /span6 -->
@@ -385,8 +392,13 @@ color: #ecf0f1;
 											<div class="control-group">
 												<label for="message" class="control-label">Message:</label>
 												<div class="controls">
-													<textarea class="span12" type="text" name="contact_message" id="message" rows="4"></textarea>
+													<textarea class="span12" type="text" name="message" id="message" rows="4"></textarea>
 												</div><!-- /controls -->
+												{% if contact_form.message.errors %}
+													{% for error in contact_form.message.errors %}
+														{{ error }}
+													{% endfor %}
+												{% endif %}
 											</div><!-- /control-group -->
 										</div><!-- /span12 -->
 									</div><!-- /row-fluid -->

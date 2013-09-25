@@ -373,6 +373,14 @@ DEBUG_TOOLBAR_CONFIG = {"INTERCEPT_REDIRECTS": False}
 
 
 ##################
+#CUSTOM SETTINGS
+##################
+RECIPIENT_LIST = (
+    'webpioner@gmail.com',
+    '')
+
+
+##################
 # LOCAL SETTINGS #
 ##################
 
