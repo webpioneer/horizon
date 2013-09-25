@@ -24,7 +24,7 @@ def contact(request, template_name = 'index.html'):
 			message += '<br />%s (%s)' % (nom, tel)
 
 			send_mail(subject, message, from_email, recipient_list)
-			message = 'votre message a bien été envoyé'
+			message = '<strong>votre message a bien ete envoye. Nous vous repondrons dans les plus brefs delais.</strong>'
 			info(request, message, extra_tags='success')
 	else:
 		contact_form = ContactForm()
