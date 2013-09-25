@@ -1,5 +1,6 @@
 from django.core.mail import send_mail
 from django.conf import settings
+from django.contrib.messages import info
 
 from mezzanine.utils.views import render
 
@@ -23,6 +24,8 @@ def contact(request, template_name = 'index.html'):
 			message += '<br />%s (%s)' % (nom, tel)
 
 			send_mail(subject, message, from_email, recipient_list)
+			message = 'votre message a bien été envoyé'
+			info(request, message)
 	else:
 		contact_form = ContactForm()
 
